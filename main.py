@@ -1,9 +1,15 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, request, redirect, session, escape, url_for
+import flask_login
+from data_manager import data_manager_user_operations
 from util import json_response
-
 import data_handler
 
 app = Flask(__name__)
+app.secret_key = 'xxs'
+login_manager = flask_login.LoginManager()
+login_manager.init_app(app)
+
+
 
 
 @app.route("/")
@@ -52,8 +58,6 @@ def login():
 def logout():
     # remove the username from the session if it's there
     session.pop('username')
-    session.pop('email')
-    session.pop('reputation')
     return redirect('/login')
 
 
