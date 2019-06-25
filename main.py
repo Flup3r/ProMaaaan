@@ -1,7 +1,21 @@
-from flask import Flask, render_template, url_for
-from util import json_response
+import os
+from flask import Flask, render_template, request, redirect, session, escape, url_for
+import flask_login
+from werkzeug.utils import secure_filename
 
+from util import json_response
 import data_handler
+
+app = Flask(__name__)
+
+UPLOAD_FOLDER = 'ProMaaaa/static/images'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+app.secret_key = 'xxs'
+
+login_manager = flask_login.LoginManager()
+
+login_manager.init_app(app)
 
 app = Flask(__name__)
 
