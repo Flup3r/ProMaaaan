@@ -24,7 +24,7 @@
               <a class="navbar-brand" href="/">Swarm</a>
             </div>
             <ul class="nav navbar-nav">
-              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/">Home</a></li>
               <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">List of Table
                 <span class="caret"></span></a>
@@ -36,10 +36,50 @@
 
             </ul>
           <ul class="nav navbar-nav navbar-right">
-              <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li class="active"><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
               <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </div>
         </nav>
+
+
+        <form class="form-horizontal" action="/register" method="POST">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Email:</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="username">Username:</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="username" placeholder="Enter nickname" name="username">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="password">Password:</label>
+            <div class="col-sm-4">
+              <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">Submit</button>
+              <a href="/login">Already have an account?</a>
+            </div>
+          </div>
+        </form>
+        {% if message %}
+                <div class="alert alert-danger">
+                    <strong>Error:</strong> {{ message }}
+                </div>
+            {% endif %}
     </body>
 </html>
 
