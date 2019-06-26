@@ -56,3 +56,9 @@ def verify_email(data):
     if email_check:
         return "email taken"
     return None
+
+
+def get_email(username=None):
+    sql_query = """SELECT user_email FROM credentials WHERE user_login = %s"""
+    info = db_connection.sql_data(sql_query, "read", (username, ))
+    return info
