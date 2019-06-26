@@ -14,10 +14,13 @@ login_manager.init_app(app)
 
 @app.route("/")
 def index():
+    login = None
+    if 'username' in session:
+        login = session['username']
     """
     This is a one-pager which shows all the boards and cards
     """
-    return render_template('index.html')
+    return render_template('index.html', login=login)
 
 
 @app.route("/get-boards")
