@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Swarm</title>
+
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='favicon/favicon-96x96.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon/favicon-16x16.png') }}">
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script type="module" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="/">Swarm</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">List of Table
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Private List</a></li>
+                  <li><a href="#">Public List</a></li>
+                </ul>
+              </li>
+
+            </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="/register"><span class="glyphicon glyphicon-user"></span>My Page</a></li>
+              <li><a href="/logout"><span ></span>Logout</a></li>
+            </div>
+        </nav>
+                <div class="container col-12 d-flex" style="margin-top: 15%">
+                    <div class="container col-4">
+                        <div class="jumbotron col-12">
+                            <p>{{ username }}</p>
+                            <p>{{ email }}</p>
+                            <p><a href="/logout" role="button" class="btn btn-outline-info float-left">Log Out</a></p>
+                        </div>
+                    </div>
+                </div>

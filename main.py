@@ -14,10 +14,13 @@ login_manager.init_app(app)
 
 @app.route("/")
 def index():
+    login = None
+    if 'username' in session:
+        login = session['username']
     """
     This is a one-pager which shows all the boards and cards
     """
-    return render_template('index.html')
+    return render_template('index.html', login=login)
 
 
 @app.route("/get-boards")
@@ -53,26 +56,37 @@ def login():
                 return redirect('/my_page')
     return render_template("login.html")
 
-
 @app.route('/logout')
 def logout():
-    # remove the username from the session if it's there
-    session.pop('username')
+    # remove the username from the session if it is there
+    session.pop('username', None)
     return redirect('/login')
 
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    data = request.form
-    if request.method == 'POST':
-        if data_manager_user_operations.verify_credentials(data):
-            return render_template("register.html", message=data_manager_user_operations.verify_credentials(data))
-        else:
-            data_manager_user_operations.register(data)
-            session['username'] = request.form['username']
-            session['email'] = request.form['email']
-            return redirect('/my_page')
+    if 'username' in session:
+        return redirect('/my_page')
+    else:
+        if request.method == 'POST':
+            data = request.form
+            if data_manager_user_operations.verify_credentials(data):
+                return render_template('register.html', message=data_manager_user_operations.verify_credentials(data))
+            else:
+                data_manager_user_operations.register(data)
+                session['username'] = request.form['username']
+                session['email'] = request.form['email']
+                return redirect('/my_page')
     return render_template("register.html")
+
+
+@app.route('/my_page')
+def my_page():
+    if 'username' in session:
+        info = data_manager_user_operations.get_email(session['username'])
+        session['email'] = info[0]['user_email']
+        return render_template('my_page.html', username=session['username'], email=session['email'])
+    return redirect("/login")
 
 
 def main():
