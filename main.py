@@ -10,8 +10,6 @@ login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
 
 
-
-
 @app.route("/")
 def index():
     login = None
@@ -21,6 +19,19 @@ def index():
     This is a one-pager which shows all the boards and cards
     """
     return render_template('index.html', login=login)
+
+
+@app.route("/boards")
+def boards():
+    login = None
+    if 'username' in session:
+        login = session['username']
+    else:
+        return redirect('/login')
+    """
+    This is a one-pager which shows all the boards and cards
+    """
+    return render_template('boards.html', login=login)
 
 
 @app.route("/get-boards")

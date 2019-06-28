@@ -6,16 +6,17 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Swarm</title>
 
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon/favicon-32x32.png') }}">
         <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='favicon/favicon-96x96.png') }}">
         <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon/favicon-16x16.png') }}">
 
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <script type="module" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
     </head>
     <body>
         <nav class="navbar navbar-inverse">
@@ -24,8 +25,8 @@
               <a class="navbar-brand" href="/">Swarm</a>
             </div>
             <ul class="nav navbar-nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li class="dropdown">
+              <li class=><a href="/">Home</a></li>
+              <li class="dropdown active">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">List of Table
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -33,7 +34,6 @@
                   <li><a href="/boards">Public List</a></li>
                 </ul>
               </li>
-
             </ul>
           <ul class="nav navbar-nav navbar-right">
               {% if login %}
@@ -43,12 +43,20 @@
               <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
               <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
               {% endif %}
-            </div>
+          </ul>
+          </div>
         </nav>
-
-
-    </body>
+        <div id="kanban-table">
+          <button class="kanban-table__new-column btn btn-primary pull-right" id="add_new_board">Add board</button>
+          <div class="kanban-table__container"></div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+        <script   src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"   integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="   crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+  </body>
 </html>
+
+
 
 
 
